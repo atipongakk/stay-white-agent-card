@@ -39,6 +39,9 @@ if (!is_null($events['events'])) {
 						curl_setopt($ch, CURLOPT_POSTFIELDS, "id=abc123");
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 						$server_output = curl_exec ($ch);
+						$file = fopen("log1.txt","w+");
+						fwrite($file,$server_output);
+						fclose($file);
 						curl_close ($ch);
 						$responseMsg = "เรียบร้อย";
 				  } else {
@@ -60,9 +63,7 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			$result = curl_exec($ch);
 			
-			$file = fopen("log1.txt","w+");
-			fwrite($file,$result);
-			fclose($file);*/
+			*/
 			
 			
 			// Build message to reply back
