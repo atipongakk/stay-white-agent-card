@@ -17,9 +17,18 @@ if (!is_null($events['events'])) {
 			$text = $event['message']['text'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
-
+			$card_data = explode(",", $text);
+			$responseMsg = "";
+			if(sizeof($card_data) == 6) {
+				$responseMsg = "ข้อมูลถูกต้อง";
+				
+			} else {
+				$reponseMsg = "รูปแบบข้อมูลไม่ถูกต้องโปรดส่งใหม่อีกครั้ง";
+			}
+			
+			
 			//Send Message To Backoffice 
-			$urlBF = "";
+			/*$urlBF = "";
 			$headersBF = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 			$ch = curl_init($urlBF);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -31,13 +40,13 @@ if (!is_null($events['events'])) {
 			
 			$file = fopen("log1.txt","w+");
 			fwrite($file,$result);
-			fclose($file);
+			fclose($file);*/
 			
 			
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => 'https://lacphoto.org/berenice/wp-content/uploads/Test-Logo.svg.png'
+				'text' => $responseMsg
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
