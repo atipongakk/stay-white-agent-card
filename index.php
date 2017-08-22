@@ -31,8 +31,9 @@ if (!is_null($events['events'])) {
 						$data_6 = $card_data[5];
 						
 						$ch = curl_init();
+						$parameter = "&data1=" . $data_1 . "&data2=" . $data_2 . "&data3=" . $data_3 . "&data4=" . $data_4 ."&data5=" . $data_5 . "&data6=" . $data_6 .
 						curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: text/html'));
-						curl_setopt($ch, CURLOPT_URL,"http://sv2.lab.finiz.in.th/staywhite/index?id=". $fileName);
+						curl_setopt($ch, CURLOPT_URL,"http://sv2.lab.finiz.in.th/staywhite/index?id=". $fileName . $parameter);
 						curl_setopt($ch, CURLOPT_POST, 1);
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 						$server_output = curl_exec ($ch);
