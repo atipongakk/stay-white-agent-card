@@ -24,16 +24,16 @@ if (!is_null($events['events'])) {
 				$imgsize = getimagesize('https://stay-white-agent-card.herokuapp.com/IMG_' . $fileName . '.jpg');
 				if($imgsize[0] > 0) {
 						$data_1 = trim(explode(":", $card_data[0])[1]);
-						$data_2 = $card_data[1];
-						$data_3 = $card_data[2];
-						$data_4 = $card_data[3];
-						$data_5 = $card_data[4];
-						$data_6 = $card_data[5];
-						
+						$data_2 = trim(explode(":", $card_data[2])[1]);
+						$data_3 = trim(explode(":", $card_data[3])[1]);
+						$data_4 = trim(explode(":", $card_data[4])[1]);
+						$data_5 = trim(explode(":", $card_data[5])[1]);
+						$data_6 = trim(explode(":", $card_data[6])[1]);
 						$ch = curl_init();
 						//$parameter = "&data1=" . $data_1 . "&data2=" . $data_2 . "&data3=" . $data_3 . "&data4=" . $data_4 ."&data5=" . $data_5 . "&data6=" . $data_6;
 						curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: text/html'));
-						curl_setopt($ch, CURLOPT_URL,"http://sv2.lab.finiz.in.th/staywhite/index?id=". $fileName . "&data1=" . $data_1);
+						curl_setopt($ch, CURLOPT_URL,"http://sv2.lab.finiz.in.th/staywhite/index?id=". $fileName . "&data1=" . $data_1 . "&data2=" . $data_2 . 
+						"&data3=" . $data_3 . "&data4=" . $data_4 . "&data5=" . $data_5 . "&data6=" . $data_6);
 						curl_setopt($ch, CURLOPT_POST, 1);
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 						$server_output = curl_exec ($ch);
