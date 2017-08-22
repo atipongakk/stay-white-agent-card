@@ -31,8 +31,20 @@ if (!is_null($events['events'])) {
 						$data_6 = trim(explode(":", $card_data[6])[1]);
 						$ch = curl_init();
 						//$parameter = "&data1=" . $data_1 . "&data2=" . $data_2 . "&data3=" . $data_3 . "&data4=" . $data_4 ."&data5=" . $data_5 . "&data6=" . $data_6;
-						curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: text/html'));
-						curl_setopt($ch, CURLOPT_URL,"http://sv2.lab.finiz.in.th/staywhite/index?id=". $fileName . "&data1=" . $data_1 . "&data2=" . $data_2 . 
+						//curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: text/html'));
+						$dataPost = "id=" . $fileName . "&data1=" . $data_1 . "&data2=" . $data_2 . "&data3=" . $data_3 . "&data4=" . $data_4 . "&data5=" . $data_5 . "&data6=" . $data_6;
+
+						curl_setopt($ch, CURLOPT_URL, "http://sv2.lab.finiz.in.th/staywhite/index");
+						curl_setopt($ch, CURLOPT_POST, 1);
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($ch, CURLOPT_POSTFIELDS, $dataPost);
+						$server_output = curl_exec($ch);
+						$file = fopen("log1.txt","w+");
+						fwrite($file,$server_output);
+						fclose($file);
+						curl_close ($ch);
+						
+						/*curl_setopt($ch, CURLOPT_URL,"http://sv2.lab.finiz.in.th/staywhite/index?id=". $fileName . "&data1=" . $data_1 . "&data2=" . $data_2 . 
 						"&data3=" . $data_3 . "&data4=" . $data_4 . "&data5=" . $data_5 . "&data6=" . $data_6);
 						curl_setopt($ch, CURLOPT_POST, 1);
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -40,7 +52,7 @@ if (!is_null($events['events'])) {
 						$file = fopen("log1.txt","w+");
 						fwrite($file,$server_output);
 						fclose($file);
-						curl_close ($ch);
+						curl_close ($ch);*/
 						$responseMsg = "เรียบร้อย " . $server_output;
 				  } else {
 					$responseMsg = "ไม่พบข้อมูลรูปภาพ กรุณาอัฟโหลดรูปภาพใหม่อีกครั้ง";
