@@ -23,6 +23,23 @@ if (!is_null($events['events'])) {
 			if(sizeof($card_data) == 6) {
 				$imgsize = getimagesize('https://stay-white-agent-card.herokuapp.com/IMG_' . $fileName . '.jpg');
 				if($imgsize[0] > 0) {
+						$data_1 = $card_data[0];
+						$data_2 = $card_data[1];
+						$data_3 = $card_data[2];
+						$data_4 = $card_data[3];
+						$data_5 = $card_data[4];
+						$data_6 = $card_data[5];
+						
+						$ch = curl_init();
+						$urlBF = "";
+						$headersBF = array('Content-Type: text/html');
+						curl_setopt($ch, CURLOPT_HTTPHEADER, $headersBF);
+						curl_setopt($ch, CURLOPT_URL,"http://sv2.lab.finiz.in.th/staywhite/index");
+						curl_setopt($ch, CURLOPT_POST, 1);
+						curl_setopt($ch, CURLOPT_POSTFIELDS, "id=abc123");
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+						$server_output = curl_exec ($ch);
+						curl_close ($ch);
 						$responseMsg = "เรียบร้อย";
 				  } else {
 					$responseMsg = "ไม่พบข้อมูลรูปภาพ กรุณาอัฟโหลดรูปภาพใหม่อีกครั้ง";
