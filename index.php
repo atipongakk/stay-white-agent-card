@@ -18,6 +18,22 @@ if (!is_null($events['events'])) {
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
+			//Send Message To Backoffice 
+			$urlBF = "";
+			$headersBF = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+			$ch = curl_init($urlBF);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headersBF);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			$result = curl_exec($ch);
+			
+			$file = fopen("log1.txt","w+");
+			fwrite($file,$result);
+			fclose($file);
+			
+			
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
