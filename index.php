@@ -23,7 +23,7 @@ if (!is_null($events['events'])) {
 			if(sizeof($card_data) == 6) {
 				$imgsize = getimagesize('https://stay-white-agent-card.herokuapp.com/IMG_' . $fileName . '.jpg');
 				if($imgsize[0] > 0) {
-						$data_1 = $card_data[0];
+						$data_1 = trim(explode(":", $card_data[0])[1]);
 						$data_2 = $card_data[1];
 						$data_3 = $card_data[2];
 						$data_4 = $card_data[3];
