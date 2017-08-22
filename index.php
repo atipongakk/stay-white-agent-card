@@ -15,13 +15,18 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
 			$text = $event['message']['text'];
+			$fileName = $event['source']['userId'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 			$card_data = explode(",", $text);
 			$responseMsg = "";
 			if(sizeof($card_data) == 6) {
-				$responseMsg = "ข้อมูลถูกต้อง";
-				
+				$imgsize = getimagesize('https://stay-white-agent-card.herokuapp.com/IMG_' . $fileName . '.jpg');
+				if($imgsize[0] > 0) {
+						$responseMsg = "เรียบร้อย";
+				  } else {
+					$responseMsg = "ไม่พบข้อมูลรูปภาพ กรุณาอัฟโหลดรูปภาพใหม่อีกครั้ง";
+				  }
 			} else {
 				$responseMsg = "รูปแบบข้อมูลไม่ถูกต้องโปรดส่งใหม่อีกครั้ง";
 			}
