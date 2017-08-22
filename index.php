@@ -21,7 +21,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => $text
+				'text' => 'https://lacphoto.org/berenice/wp-content/uploads/Test-Logo.svg.png'
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
