@@ -47,6 +47,7 @@ if (!is_null($events['events'])) {
 		else if($event['type'] == 'message' && $event['message']['type'] == 'image'){
 			// Get message Id
 			$messageId = $event['message']['id'];
+			$fileName = $event['source']['userId'];
 			$url = 'https://api.line.me/v2/bot/message/' . $messageId . '/content';
 			$headers = array('Authorization: Bearer ' . $access_token);
 			$ch = curl_init($url);
@@ -55,17 +56,16 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			$result = curl_exec($ch);
 			curl_close($ch);
-			$file = fopen('IMG_A.jpg','w+');
+			$file = fopen('IMG_' . $fileName . '.jpg','w+');
 			fwrite($file,$result);
 			fclose($file);
-			
 			
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => 'Thank for submit images'
+				'text' => 'ทดสอบ'
 			];
 			
 			// Make a POST Request to Messaging API to reply to sender
